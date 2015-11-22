@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Word1</string>
+    <string name="hello_world">Hello world!</string>
+
+    //BUTTON
+    <string name="btnTraining">Trening</string>
+    <string name="btnList">Lista</string>
+    <string name="btnLastTraning">Ostatni trening</string>
+    <string name="btnCategory">Kategorie</string>
+    <string name="btnStart">Start</string>
+    <string name="btnEngFor">Ang.- Pols.</string>
+    <string name="btnStop">Stop</string>
+
+    <string name="btnKnow">Wiem</string>
+    <string name="btnNext">Dalej</string>
+
+
+    <string name="hintWord">Słowo</string>
+    <string name="hintTranslate">Tłumaczenie</string>
+    <string name="hintLabel">Etyketa</string>
+
+    <string name="addNewWord">Ddaj Nowe Słowo</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="undoWord">Usuń</string>
+    <string name="addWord">Dodaj</string>
+</resources>
