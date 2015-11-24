@@ -14,18 +14,38 @@
         android:id="@+id/translateWord"/>
     <LinearLayout
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnCategoryWord"
+            android:text="@string/category"
+            android:textAllCaps="true"
+            android:background="@color/orange_400"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgBtnDelete"
+            android:iconn="@+id/"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="match_parent">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/btnUndoWord"
             android:text="@string/undoWord"
             android:textAllCaps="true"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/"
+            android:id="@+id/btnAddWord"
+            android:background="@color/blue_grey_700"
             android:text="@string/addWord"
             android:textAllCaps="true"/>
     </LinearLayout>
-
 </LinearLayout>
