@@ -34,18 +34,16 @@ public final class Contract {
 
         //sciezka do ENTRY
         public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_WORD).build();
-
         //sciezka do ogolnej DB  w apce
         public static final String CONTENT_TYPE = "vnd.android.cursor.der/" + AUTHORITY + "/" + PATH_WORD;
-
         public static final String TABLE_NAME = "word";
 
         //_ID zawsze. z tej zmiennej korzysta android
-
         public static final String _ID = "_id";
         public static final String ID_WORDS = "id_words";
+        public static final String WORD = "word";
         public static final String TRANSLATION = "translation";
-        public static final String ID_KATEGORY = "id_kategory";
+        public static final String ID_KATEGORY = "id_category";
         public static final String ID_STATUS = "id_status";
 
 
@@ -55,17 +53,33 @@ public final class Contract {
         }
     }
 
-    public static final class Kategory implements BaseColumns {
+    public static final class Category implements BaseColumns {
 
         public  static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_CATEGORY).build();
         public static final String CONTENT_TYPE = "vnd.android.cursor.der/" + AUTHORITY + "/" + PATH_CATEGORY;
-        public static final String TABLE_NAME = "kategory";
-        public static final String _ID = "_id";
-        public static final String ID_KATEGORY = "id_kategory";
-        public static final String KATEGORY = "kategory";
+        public static final String TABLE_NAME = "category";
 
+        public static final String _ID = "_id";
+        public static final String ID_CATEGORY = "id_category";
+        public static final String CATEGORY = "category";
+
+        public static Uri buildCategoryUri (long id){
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
     }
 
+    public static final class Status implements BaseColumns {
 
+        public  static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_STATUS).build();
+        public static final String CONTENT_TYPE = "vnd.android.cursor.der/" + AUTHORITY + "/" + PATH_STATUS;
+        public static final String TABLE_NAME = "status";
 
+        public static final String _ID = "_id";
+        public static final String ID_STATUS = "id_status";
+        public static final String STATUS = "status";
+
+        public static Uri buildStatusUri (long id){
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+    }
 }

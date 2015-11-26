@@ -19,13 +19,49 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
 
+    public DBHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    //jesli DB nie istnieje, to bedzie utworzona
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL(
+                "create table if not exist " + Contract.Word.TABLE_NAME
+                + "(" +
+                Contract.Word._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                Contract.Word.ID_WORDS + " INTEGER, " +
+                Contract.Word.WORD + " TEXT, " +
+                Contract.Word.TRANSLATION + " TEXT, " +
+                Contract.Word.ID_KATEGORY + " INTEREG NOT NULL, " +
+                Contract.Word.ID_STATUS + " INTEGER "
+                + ");"
+        );
 
-    }
+        db.execSQL(
+                "CREATE TABLE IF NOT EXIST "+ Contract.Category.TABLE_NAME
+                + "(" +
+                Contract.Category._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                Contract.Category.ID_CATEGORY + " INTEGER, " +
+                Contract.Category.CATEGORY + " TEXT "
+                + ");"
+        );
+
+        db.execSQL(
+                "CREATE  TABLE IF NOT EXIST "+ Contract.Status.TABLE_NAME
+                + "(        " +
+                Contract.Status._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,         " +
+                Contract.Status.ID_STATUS + " INTEGER,         " +
+                Contract.Status.STATUS + " TEXT "
+                + ");"
+                );
+}
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IR EXIST " + Contract.Word.TABLE_NAME + ";");
+        db.execSQL("DROP TABLE IR EXIST " + Contract.Status.TABLE_NAME + ";");
+        db.execSQL("DROP TABLE IR EXIST " + Contract.Category.TABLE_NAME + ";");
 
     }
 }
