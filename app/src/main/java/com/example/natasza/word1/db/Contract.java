@@ -48,7 +48,7 @@ public final class Contract {
 
 
         //budowanie URI dla tabeli WORD
-        public static Uri buildDisciplinesUri (long id){
+        public static Uri buildWordUri (long id){
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
     }

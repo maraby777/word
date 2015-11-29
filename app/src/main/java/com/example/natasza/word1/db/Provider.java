@@ -89,9 +89,10 @@ public class Provider extends ContentProvider {
                 throw new
                         IllegalStateException( "Unknown Uri " + uri);
         }
+        //metoda zmienja dane w fragmiecie
+        result.setNotificationUri(getContext().getContentResolver(), uri);
 
-        result.setNo
-        return null;
+        return result;
     }
 
     @Override
@@ -113,16 +114,105 @@ public class Provider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        return null;
+
+        SQLiteDatabase db;
+        long insertId;
+        Uri returnUri;
+
+        switch (sUriMatcher.match(uri)){
+            case WORD:
+                db = mDBHelper.getWritableDatabase();
+                insertId = db.insert(Contract.Word.TABLE_NAME, null, values);
+                returnUri = Contract.Word.buildWordUri(insertId);
+
+                break;
+
+            case CATEGORY:
+                db = mDBHelper.getWritableDatabase();
+                insertId = db.insert(Contract.Category.TABLE_NAME, null, values);
+                returnUri = Contract.Category.buildCategoryUri(insertId);
+
+                break;
+
+            case STATUS:
+                db = mDBHelper.getWritableDatabase();
+                insertId = db.insert(Contract.Status.TABLE_NAME, null, values);
+                returnUri = Contract.Status.buildStatusUri(insertId);
+
+                break;
+
+            default:
+                throw new IllegalStateException( "Unknown Uri " + uri);
+        }
+
+        getContext().getContentResolver().notifyChange(uri, null, false);
+
+        return returnUri;
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        return 0;
+
+        SQLiteDatabase db;
+        int deleteRows; //liczba skasowanych wierszy
+
+        switch (sUriMatcher.match(uri)){
+            case WORD:
+                db = mDBHelper.getWritableDatabase();
+                deleteRows = db.delete(Contract.Word.TABLE_NAME, selection, selectionArgs);
+
+                break;
+
+            case CATEGORY:
+                db = mDBHelper.getWritableDatabase();
+                deleteRows = db.delete(Contract.Category.TABLE_NAME, selection, selectionArgs);
+
+                break;
+
+            case STATUS:
+                db = mDBHelper.getWritableDatabase();
+                deleteRows = db.delete(Contract.Status.TABLE_NAME, selection, selectionArgs);
+
+                break;
+
+            default:
+                throw new IllegalStateException(" Unknown Uri "+ uri);
+        }
+
+        getContext().getContentResolver().notifyChange(uri, null, false);
+        return deleteRows;
     }
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        return 0;
+
+        SQLiteDatabase db;
+        int updateRows; //liczba skasowanych wierszy
+
+        switch (sUriMatcher.match(uri)){
+            case WORD:
+                db = mDBHelper.getWritableDatabase();
+                updateRows = db.update(Contract.Word.TABLE_NAME, values, selection, selectionArgs);
+
+                break;
+
+            case CATEGORY:
+                db = mDBHelper.getWritableDatabase();
+                updateRows = db.update(Contract.Category.TABLE_NAME, values, selection, selectionArgs);
+
+                break;
+
+            case STATUS:
+                db = mDBHelper.getWritableDatabase();
+                updateRows = db.update(Contract.Status.TABLE_NAME, values, selection, selectionArgs);
+
+                break;
+
+            default:
+                throw new IllegalStateException(" Unknown Uri "+ uri);
+        }
+
+        getContext().getContentResolver().notifyChange(uri, null, false);
+        return updateRows;
     }
 }
