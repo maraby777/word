@@ -8,7 +8,7 @@
     <string name="btnLastTraning">Ostatni trening</string>
     <string name="btnCategory">Kategorie</string>
     <string name="btnStart">Start</string>
-    <string name="btnEngFor">Ang.- Pols.</string>
+    <string name="btnChangeLanguage">Ang.- Pols.</string>
     <string name="btnStop">Stop</string>
 
     <string name="btnKnow">Wiem</string>
@@ -25,4 +25,5 @@
     <string name="undoWord">Usuń</string>
     <string name="addWord">Dodaj</string>
     <string name="category">Kategoria</string>
+        <string name="title_activity_training_details">TrainingDetails</string>
 </resources>
